@@ -1,0 +1,114 @@
+mkdir chess-review-app
+cd chess-review-app
+mkdir backend frontend
+cd backend
+npm init -y
+npm install express mongoose dotenv cors bcryptjs jsonwebtoken
+npm install --save-dev nodemon jest supertest @babel/core @babel/preset-env mongodb-memory-server concurrently
+npm install glicko2
+mongod
+npm run dev:backend
+
+# Test the base endpoint
+curl http://localhost:5000
+
+# Expected output should be:
+# {"message":"Welcome to Chess Review App API"} 
+
+curl -X POST http://localhost:5000/api/test/user \
+  -H "Content-Type: application/json" 
+
+# Run all tests
+npm test
+
+# Run only backend tests
+npm run test:backend
+
+# Run only frontend tests (when we add them)
+npm run test:frontend
+
+# Run both frontend and backend in development
+npm run dev
+
+mkdir -p backend/tests/unit backend/tests/integration backend/tests/models
+
+# Option 1: Run from root directory
+npm test
+
+# Option 2: Run from backend directory
+cd backend
+npm test 
+
+# From the root directory
+npm install
+
+# Then cd into backend and install its dependencies
+cd backend
+npm install
+
+# Now you can run tests from the root
+cd ..
+npm test 
+
+# From the backend directory
+mkdir -p tests/models tests/integration tests/unit 
+
+# Make the script executable (only need to do this once)
+chmod +x start.sh
+
+# Start everything with one command
+npm start 
+
+# Initialize git repo from root directory
+cd ..  # if you're in backend/
+git init
+
+# Create .gitignore
+cat > .gitignore << EOL
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Testing
+coverage/
+
+# Production build
+build/
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+EOL
+
+# Create a .gitkeep file to track the empty directory
+touch frontend/.gitkeep
+
+# Try the git commands again
+git add .
+git commit -m "Initial commit: Backend implementation with auth, puzzles, and Glicko-2 rating system" 
