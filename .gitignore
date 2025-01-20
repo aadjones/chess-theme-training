@@ -32,13 +32,19 @@ coverage/
 build/
 dist/
 
-# IDE
+# IDE and Editor specific
 .idea/
 .vscode/
 *.swp
 *.swo
+*.sublime-*
+.project
+.settings/
 
 # OS
 .DS_Store
 Thumbs.db
-EOL
+
+# MongoDB
+data/
+dump/
