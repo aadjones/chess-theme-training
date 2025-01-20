@@ -48,3 +48,6 @@ Thumbs.db
 # MongoDB
 data/
 dump/
+
+# Local development
+terminal
