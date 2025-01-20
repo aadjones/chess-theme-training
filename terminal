@@ -112,3 +112,110 @@ touch frontend/.gitkeep
 # Try the git commands again
 git add .
 git commit -m "Initial commit: Backend implementation with auth, puzzles, and Glicko-2 rating system" 
+
+# Remove any existing git repository in frontend
+rm -rf frontend/.git
+
+# Remove the frontend directory completely
+rm -rf frontend
+
+# Create a fresh frontend directory
+mkdir frontend
+
+# Add the .gitkeep file
+touch frontend/.gitkeep
+
+# Now try the git commands again
+git add .
+git commit -m "Initial commit: Backend implementation with auth, puzzles, and Glicko-2 rating system" 
+
+# Build and start the containers
+docker-compose up --build
+
+# In another terminal, test the API
+curl http://localhost:5000
+# Should return: {"message":"Welcome to Chess Review App API"}
+
+# Test user registration
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "email": "test@example.com", "password": "password123"}' 
+
+# Clean start (remove node_modules if they exist)
+rm -rf node_modules backend/node_modules
+rm backend/.env
+
+# Run our setup scripts
+npm run setup
+npm run init
+
+# In another terminal, test the API
+curl http://localhost:5000 
+
+# Register a user
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "email": "test@example.com", "password": "password123"}'
+
+# Login and save the token
+TOKEN=$(curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@example.com", "password": "password123"}' \
+  | jq -r '.token')
+
+# Test protected endpoint with the token
+curl http://localhost:5000/api/puzzles \
+  -H "Authorization: Bearer $TOKEN" 
+
+# Install Docker
+sudo apt-get update
+sudo apt-get install docker.io
+
+# Install Docker Compose
+sudo apt-get install docker-compose
+
+# Add your user to docker group to run without sudo
+sudo usermod -aG docker $USER 
+
+# On Linux
+sudo systemctl start docker
+
+# On Mac/Windows, just open Docker Desktop 
+
+# Check Docker
+docker --version
+
+# Check Docker Compose
+docker-compose --version 
+
+# First, make sure Docker Desktop is running
+# Then open a new terminal and check if docker is working
+docker --version
+
+# If that works, try docker compose (note: newer versions use "docker compose" not "docker-compose")
+docker compose version
+
+# If the above works, try running our app
+docker compose up --build 
+
+# Check if containers are running
+docker ps
+# Should show our app and mongodb containers
+
+# Check the logs
+docker compose logs app
+# Should show the Express server starting and MongoDB connecting 
+
+# Test the base endpoint
+curl http://localhost:5000
+# Should return: {"message":"Welcome to Chess Review App API"}
+
+# Create a test user
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "email": "test@example.com", "password": "password123"}'
+
+# Login and get a token
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@example.com", "password": "password123"}' 
