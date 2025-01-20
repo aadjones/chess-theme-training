@@ -37,17 +37,17 @@ describe('RegisterPage', () => {
   it('allows entering registration details', async () => {
     render(<TestRegisterPage />);
     const user = userEvent.setup();
-    
+
     const usernameInput = screen.getByLabelText(/username/i);
     const emailInput = screen.getByLabelText(/email/i);
     const passwordInput = screen.getByLabelText(/password/i);
-    
+
     await user.type(usernameInput, 'testuser');
     await user.type(emailInput, 'test@example.com');
     await user.type(passwordInput, 'password123');
-    
+
     expect(usernameInput).toHaveValue('testuser');
     expect(emailInput).toHaveValue('test@example.com');
     expect(passwordInput).toHaveValue('password123');
   });
-}); 
+});

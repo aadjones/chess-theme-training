@@ -1,9 +1,9 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { 
-  createBrowserRouter, 
-  RouterProvider, 
-  Route, 
-  createRoutesFromElements 
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  createRoutesFromElements,
 } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { HomePage } from './pages/HomePage';
@@ -22,8 +22,8 @@ const router = createBrowserRouter(
   {
     future: {
       v7_startTransition: true,
-      v7_relativeSplatPath: true
-    }
+      v7_relativeSplatPath: true,
+    },
   }
 );
 

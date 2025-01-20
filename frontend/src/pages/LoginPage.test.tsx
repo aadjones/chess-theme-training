@@ -32,14 +32,14 @@ describe('LoginPage', () => {
   it('allows entering email and password', async () => {
     render(<TestLoginPage />);
     const user = userEvent.setup();
-    
+
     const emailInput = screen.getByLabelText(/email/i);
     const passwordInput = screen.getByLabelText(/password/i);
-    
+
     await user.type(emailInput, 'test@example.com');
     await user.type(passwordInput, 'password123');
-    
+
     expect(emailInput).toHaveValue('test@example.com');
     expect(passwordInput).toHaveValue('password123');
   });
-}); 
+});

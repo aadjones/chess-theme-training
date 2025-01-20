@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 // Mock the useNavigate hook
 vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn()
+  useNavigate: () => vi.fn(),
 }));
 
 // Simple test version of Navbar without Chakra UI
@@ -30,4 +30,4 @@ describe('Navbar', () => {
     render(<TestNavbar />);
     expect(screen.getByText('Chess Theme Training')).toBeInTheDocument();
   });
-}); 
+});

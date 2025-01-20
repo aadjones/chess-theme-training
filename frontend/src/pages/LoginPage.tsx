@@ -19,4 +19,4 @@ export function LoginPage() {
       </VStack>
     </Box>
   );
-} 
+}

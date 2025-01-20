@@ -7,4 +7,4 @@ export function HomePage() {
       <Text>Welcome to your personalized chess puzzle training platform.</Text>
     </VStack>
   );
-} 
+}

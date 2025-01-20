@@ -1,23 +1,27 @@
 import '@testing-library/jest-dom';
 import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
-import React from 'react';
+
+type ChakraProps = {
+  children?: React.ReactNode;
+  [key: string]: unknown; // More specific than 'any'
+};
 
 // Mock Chakra UI components
 vi.mock('@chakra-ui/react', () => {
-  const actual = vi.importActual('@chakra-ui/react');
   const React = require('react');
   return {
-    ...actual,
-    Box: (props: any) => React.createElement('div', props),
-    Button: (props: any) => React.createElement('button', props),
-    Container: (props: any) => React.createElement('div', props),
-    FormControl: (props: any) => React.createElement('div', props),
-    FormLabel: (props: any) => React.createElement('label', props),
-    Heading: (props: any) => React.createElement('h1', props),
-    Input: (props: any) => React.createElement('input', props),
-    Stack: (props: any) => React.createElement('div', props),
-    Text: (props: any) => React.createElement('p', props),
+    Box: ({ children, ...props }: ChakraProps) => React.createElement('div', props, children),
+    Button: ({ children, ...props }: ChakraProps) => React.createElement('button', props, children),
+    Container: ({ children, ...props }: ChakraProps) => React.createElement('div', props, children),
+    FormControl: ({ children, ...props }: ChakraProps) =>
+      React.createElement('div', props, children),
+    FormLabel: ({ children, ...props }: ChakraProps) =>
+      React.createElement('label', props, children),
+    Heading: ({ children, ...props }: ChakraProps) => React.createElement('h1', props, children),
+    Input: (props: ChakraProps) => React.createElement('input', props),
+    Stack: ({ children, ...props }: ChakraProps) => React.createElement('div', props, children),
+    Text: ({ children, ...props }: ChakraProps) => React.createElement('p', props, children),
     useColorMode: () => ({ colorMode: 'light', toggleColorMode: vi.fn() }),
   };
 });
@@ -25,4 +29,4 @@ vi.mock('@chakra-ui/react', () => {
 // Clean up after each test
 afterEach(() => {
   cleanup();
-}); 
+});

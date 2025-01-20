@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
   config: {
@@ -13,6 +13,6 @@ const theme = extendTheme({
       900: '#0c4a6e',
     },
   },
-})
+});
 
-export default theme 
+export default theme;

@@ -19,4 +19,4 @@ export function Navbar() {
       </Flex>
     </Box>
   );
-} 
+}
